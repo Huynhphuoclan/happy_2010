@@ -31,6 +31,21 @@
 
     footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
 
+    /* Trái tim bay bay */
+    .heart-float {
+    position: absolute;
+    bottom: -20px;
+    color: var(--accent);
+    font-size: 20px;
+    animation: floatUp 5s linear infinite;
+    opacity: 0.8;
+    }
+    @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-200px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(-400px) scale(0.8); opacity: 0; }
+    }
+
     /* responsive */
     @media (max-width:880px){.card{grid-template-columns:1fr;max-width:640px}.right{order:-1;padding:20px}}
   </style>
@@ -61,7 +76,7 @@
       </div>
 
       <div class="right">
-        <img src="/TPNG2017.JPG" alt="Bông hoa" class="flowers" />
+        <img src="TPNG2017.JPG" alt="Bông hoa" class="flowers" />
       </div>
 
     </div>
