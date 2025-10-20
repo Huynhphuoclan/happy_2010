@@ -50,6 +50,46 @@
     @media (max-width:880px){.card{grid-template-columns:1fr;max-width:640px}.right{order:-1;padding:20px}}
   </style>
 </head>
+<style>
+  .heart {
+    position: fixed;
+    bottom: 0;
+    color: pink;
+    font-size: 20px;
+    animation: floatUp 4s ease-in infinite;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-800px) scale(1.5);
+      opacity: 0;
+    }
+  }
+  </style>
+  
+  <script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    document.body.appendChild(heart);
+  
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+  
+  setInterval(createHeart, 300);
+  </script>
+  
 <body>
   <div class="wrap">
     <div class="card" role="main">
@@ -76,7 +116,7 @@
       </div>
 
       <div class="right">
-        <img src="TPNG2017.JPG" alt="Bông hoa" class="flowers" />
+        <img src="IMG01.png" alt="Bông hoa" class="flowers" />
       </div>
 
     </div>
