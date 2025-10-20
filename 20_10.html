@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc 20/10 - Dành cho em</title>
+  <style>
+    :root{--bg:#fff0f6;--card:#ffffff;--accent:#ff4d6d;--muted:#6b6b6b}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;smooth-font-smoothing:antialiased;background:linear-gradient(135deg,var(--bg),#fff);color:#111}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+    .card{width:100%;max-width:820px;background:var(--card);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden;display:grid;grid-template-columns:1fr 420px}
+    .left{padding:48px}
+    h1{margin:0 0 8px;font-size:32px;color:var(--accent)}
+    p.lead{margin:0 0 18px;font-size:18px;color:var(--muted)}
+    .message{background:linear-gradient(180deg,#fff,#fff6f8);padding:18px;border-radius:12px;border:1px solid rgba(255,77,109,0.08)}
+    .message p{margin:0 0 12px;line-height:1.6}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-pink{background:var(--accent);color:white}
+    .btn-soft{background:transparent;border:1px solid rgba(0,0,0,0.08)}
+
+    .right{position:relative;background:linear-gradient(180deg,#fff0f6,#fff);display:flex;align-items:center;justify-content:center;padding:28px}
+    .flowers{width:100%;max-width:360px}
+
+    .hearts{position:absolute;left:14px;top:14px;display:flex;gap:8px}
+    .heart{width:36px;height:36px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ff9aa2,#ff4d6d);color:white;font-size:18px;box-shadow:0 6px 18px rgba(255,77,109,0.18);transform:translateY(0);animation:float 3s ease-in-out infinite}
+    .heart:nth-child(2){animation-delay:.3s}
+    .heart:nth-child(3){animation-delay:.6s}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){.card{grid-template-columns:1fr;max-width:640px}.right{order:-1;padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="main">
+      <div class="left">
+        <div class="hearts" aria-hidden>
+          <div class="heart">❤</div>
+          <div class="heart">❤</div>
+          <div class="heart">❤</div>
+        </div>
+        <h1>Chúc mừng 20/10, em yêu!</h1>
+        <p class="lead">Gửi em - người làm trái tim anh ấm lại mỗi ngày.</p>
+
+        <div class="message" id="messageBox">
+          <p>Anh chúc em luôn xinh đẹp, vui vẻ và tràn đầy năng lượng. Cảm ơn em đã luôn bên anh, chia sẻ và yêu thương.</p>
+          <p>Nếu em thích hoa, hãy nhận bó hoa trong hình bên cạnh — nhưng anh biết em còn quý hơn thế nhiều lần.</p>
+        </div>
+
+        <div class="cta">
+          <button class="btn btn-pink" id="surpriseBtn">Mở quà</button>
+          <button class="btn btn-soft" id="editBtn">Sửa lời chúc</button>
+        </div>
+
+      </div>
+
+      <div class="right">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><defs><linearGradient id='g' x1='0' x2='0' y1='0' y2='1'><stop offset='0' stop-color='%23ffccdd'/><stop offset='1' stop-color='%23fff'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)' rx='24'/><g transform='translate(100,80)'><g transform='scale(1)'><path d='M150 10 C 190 10 240 60 240 110 C 240 200 110 290 150 360 C 190 290 60 200 60 110 C60 60 110 10 150 10 Z' fill='%23ff4d6d' opacity='0.95'/></g></g></svg>" alt="Bông hoa" class="flowers" />
+      </div>
+
+    </div>
+  </div>
+
+  <footer>Made with ❤ — Chúc em một ngày 20/10 thật ngọt ngào.</footer>
+
+  <script>
+    const surpriseBtn = document.getElementById('surpriseBtn')
+    const editBtn = document.getElementById('editBtn')
+    const messageBox = document.getElementById('messageBox')
+
+    surpriseBtn.addEventListener('click', ()=>{
+      // thay đổi nội dung và bật animation
+      messageBox.innerHTML = `
+        <p>Surprise! Anh đã chuẩn bị một buổi tối nhỏ cho chúng ta: đi ăn tối, xem phim và một bất ngờ nữa 😏</p>
+        <p>Em đồng ý chứ?</p>
+      `
+      surpriseBtn.textContent = 'Đã gửi lời mời'
+      surpriseBtn.disabled = true
+    })
+
+    editBtn.addEventListener('click', ()=>{
+      const newText = prompt('Sửa lời chúc (viết tiếng Việt):', messageBox.innerText)
+      if(newText !== null){
+        messageBox.innerHTML = `<p>${escapeHtml(newText).replace(/\n/g,'<br/>')}</p>`
+      }
+    })
+
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g, function(tag){
+        const chars = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+        return chars[tag] || tag;
+      })
+    }
+  </script>
+</body>
+</html>
